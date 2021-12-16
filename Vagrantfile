@@ -39,7 +39,10 @@ Vagrant.configure("2") do |config|
       vb.name = "centos7"
     end
 
-    master.vm.provision "shell", path: "./scripts/cluster/docker.sh"
+    centos7.vm.provision "shell", path: "./scripts/bootstrap.sh"
+
+    # Display a note when running the machine.
+    centos7.vm.post_up_message = "Remember to run /home/docky/bin/dockerd-rootless.sh manually as docky!"
 
   end
 
