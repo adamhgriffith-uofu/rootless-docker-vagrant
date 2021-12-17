@@ -7,6 +7,9 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 echo "~ Bootstrapping                                                                   ~"
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
+echo "Installing extra packages..."
+yum install git -y
+
 echo "Setting up rootless parameters in the system..."
 cat <<EOF | sudo sh -x
 
