@@ -22,7 +22,7 @@ Running Docker containers and daemon rootless on a Centos7 VM via Vagrant.
 
 ## Build and Run
 
-Bring up CentOS7 virtual machine:
+Bring up CentOS7 virtual machine and a rootless Docker process as `docky`:
 
 ```shell
 vagrant up
@@ -38,17 +38,25 @@ vagrant ssh
 [vagrant@centos7 ~]# sudo su - docky
 ```
 
-and manually start up the rootless Docker:
-
-```shell
--bash-4.2$ dockerd-rootless.sh
-```
-
-At this point you may need to ssh into the VM via a separate terminal window. Verify Docker is running correctly using the `hello-world` image.
+Verify Docker is running correctly using the `hello-world` image:
 
 ```shell
 -bash-4.2$ docker run hello-world
 ```
+
+Try out a web server like nginx:
+
+```shell
+-bash-4.2$ docker run -p 80:80 -d nginx:1.18-alpine
+```
+
+This should fail as a non-root docker may not expose a container on a privileged port (<1024). Try a different web application like the Ghost blog:
+
+```shell
+-bash-4.2$ docker run -p 2368:2368 -d ghost
+```
+
+On your local machine open a web browser and navigate to http://localhost:2368 (made possible by an existing Vagrant `forwarded_port`).
 
 ## Teardown
 

@@ -34,3 +34,6 @@ export XDG_RUNTIME_DIR=/home/docky/.docker/run
 export PATH=/home/docky/bin:$PATH
 export DOCKER_HOST=unix:///home/docky/.docker/run/docker.sock
 EOF
+
+echo "Starting docker daemon as docky user..."
+sudo -H -u docky bash -c "source /home/docky/.bashrc && /home/docky/bin/dockerd-rootless.sh"
