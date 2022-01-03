@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
     centos7.vm.box = "centos/7"
     centos7.vm.hostname = "centos7"
     centos7.vm.network "forwarded_port", guest: 2368, host: 2368
+    centos7.vm.network "forwarded_port", guest: 8080, host: 8080
 
     centos7.vm.provider "virtualbox" do |vb|
       # Customize the number of CPUs on the VM:
